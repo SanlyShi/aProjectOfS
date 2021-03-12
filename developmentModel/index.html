@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="弹出层" />
+
+<script type="text/javascript">
+    (function(){
+        var oBtn = document.getElementById("btn");
+        var _instance = null;
+        //创建弹窗类
+        function PopBox(){
+            this.node = document.createElement("div");
+            document.body.appendChild(this.node);
+        }
+        oBtn.onclick = function(){
+            if(!_instance){
+                _instance = new PopBox;
+            }
+        }
+
+    })();
+</script>
+
+<script type="text/javascript">
+    // var observer = {
+    //     regist:function(eventName,callback){
+    //         if(!this.obj){
+    //             this.obj = {};
+    //         }
+    //         if(!this.obj[eventName]){
+    //             this.obj[eventName] = [callback];
+    //         }else{
+    //             this.obj[eventName].push(callback);
+    //         }
+    //
+    //
+    //     },
+    //     emit:function(eventName){
+    //         console.log(this.obj)
+    //         if(this.obj[eventName]){
+    //             for(var i = 0; i < this.obj[eventName].length; i++){
+    //                 this.obj[eventName][i]();
+    //             }
+    //         }
+    //     },
+    //     remove:function(eventName,callback){
+    //         if(this.obj[eventName]){
+    //             for(var i = 0; i < this.obj[eventName].length;i++){
+    //                 if(this.obj[eventName][i]==callback){
+    //                     this.obj[eventName].splice(i,1);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // };
+    //
+    // //购物车模块注册的事件
+    // observer.regist("loginSucess",function(){
+    //     console.log("购物车模块发生改变");
+    // });
+    // //个人信息模块注册的事件
+    // observer.regist("loginSucess",function(){
+    //     console.log("个人信息模块发生改变");
+    // });
+    //
+    // observer.emit("loginSucess");//
+
+
+    // var Event = {
+    //     // 通过on接口监听事件eventName
+    //     // 如果事件eventName被触发，则执行callback回调函数
+    //     on: function(eventName, callback) {
+    //         //你的代码 注册事件
+    //         if(!this.obj){
+    //             Object.defineProperty(this,"obj",{
+    //                 value:{},
+    //                 enumerabel:false
+    //             })
+    //         }
+    //         if(!this.obj[eventName]){
+    //             this.obj[eventName] = [callback];
+    //         }else{
+    //             this.obj[eventName].push(callback);
+    //         }
+    //     },
+    //     // 触发事件 eventName
+    //     emit: function(eventName) {
+    //         //你的代码 发布事件
+    //         if(this.obj[eventName]){
+    //             for(var i = 0; i < this.obj[eventName].length; i++){
+    //                 this.obj[eventName][i](arguments[1]);
+    //             }
+    //         }
+    //     }
+    // };
+    // // 测试1
+    // Event.on('test', function(result) {
+    //     console.log(result);
+    // });
+    // Event.on('test', function() {
+    //     console.log('test');
+    // });
+    // Event.emit('test', 'hello world'); // 输出 'hello world' 和 'test'
+
+
+    //订单系统  票务系统  酒店系统
+
+    function Ticket(){
+
+    }
+    Ticket.prototype.create = function(){
+        console.log("创建了机票订单");
+    }
+
+    function Hotel(){
+
+    }
+    Hotel.prototype.create = function(){
+        console.log("创建了酒店订单");
+    }
+
+    function Order(){
+        this.orders = [];
+    }
+    Order.prototype.addOrder = function(order){
+        this.orders.push(order);
+        return this;
+    }
+    Order.prototype.create = function(){
+        for(var i = 0; i < this.orders.length; i++){
+            this.orders[i].create();
+        }
+    }
+
+    var order = new Order();
+    order.addOrder(new Ticket()).addOrder(new Ticket())
+        .addOrder(new Hotel());
+
+    order.create();
+</script>
+</body>
+</html>

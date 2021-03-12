@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .greenClass {
+            color: green
+        }
+
+        .fontClass {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <p v-bind:title="title" v-if="showBool">{{ name }}我是if DOM直接就没了</p>
+    <p v-bind:title="title" v-show="showBool">{{ name }}我是show display:none/block</p>
+    <p v-on:click="showOrHide()">点击隐藏/显示</p>
+
+    <hr/>
+    <!--````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````-->
+
+    <input type="text" v-model="name">
+    <p>监听属性：{{ nameWatch }}</p>
+    <p>计算属性：{{ nameComputed }}</p>
+
+
+    <hr/>
+    <!--````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````-->
+
+    <ul>
+        <p>不使用组件for</p>
+        <li v-for="item in todoList">{{ item }}</li>
+        <p>使用组件for</p>
+        <component-item v-for="item in todoList" v-bind:item="item" @component_click="componentClick"></component-item>
+    </ul>
+
+    <hr>
+    <!--````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````-->
+
+    <a v-bind:href="urlLink">百度</a>
+    <br>
+    <span v-bind:style='{"color":color,"font-size":fontsize+"px"}'>我是style object红色</span>
+    <br>
+    <span v-bind:style='[colorItem,fontsizeItem]'>我是style array红色</span>
+    <br>
+    <span v-bind:class='{"greenClass":HasColor,"fontClass":HasFontsize}'> 我是css Object红色</span>
+    <br>
+    <span v-bind:class='[HasColorItem,HasFontsizeItem]'>我是css array绿色</span>
+
+    <hr/>
+    <!--````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````-->
+
+</div>
+<script>
+    Vue.component(
+        'component-item', {
+            props: ['item'],
+            template: `
+              <li>{{ item }}
+              <button @click="clickMe">emit</button>
+              </li>`,
+            methods: {
+                clickMe() {
+                    this.$emit('component_click', "你点了我儿砸")
+                }
+            }
+
+        }
+    )
+    var vueModelOfDomApp = new Vue({
+        el: "#app",
+        data: {
+            name: "sanlyshi",
+            showBool: true,
+            title: '我是标题',
+            todoList: ["事件1", "事件2", "事件3", "事件4"],
+            urlLink: 'http://www.baidu.com',
+            nameWatch: '',
+            color: 'red',
+            fontsize: '21',
+            colorItem: {"color": "red"},
+            fontsizeItem: {"font-size": "21px"},
+            HasColor: true,
+            HasFontsize: true,
+            HasColorItem: "greenClass",
+            HasFontsizeItem: "fontClass",
+
+            setObjectProperty: {},
+            setArrayValue: []
+        },
+        methods: {
+            showOrHide() {
+                this.showBool = !this.showBool
+
+                this.$set(this.setObjectProperty, 'newSetValue', 2)
+                console.log('this.setObjectProperty.newSetValue', this.setObjectProperty.newSetValue);
+                this.$set(this.setArrayValue, 0, 'xixi')
+                this.setArrayValue[0] = "haha"
+                console.log('this.setArrayValue', this.setArrayValue[0]);
+            },
+            componentClick(value) {
+                console.log('value', value);
+            }
+        },
+        created: function () {
+        },
+        mounted: function () {
+        },
+        computed: {
+            nameComputed: function () {
+                return this.name + "  computed"
+            }
+        },
+        watch: {
+            name: function (val) {
+                this.nameWatch = val + " watch"
+            },
+            setArrayValue: function (value) {
+                console.log('value', value);
+            }
+
+        }
+
+    })
+
+</script>
+</body>
+</html>
