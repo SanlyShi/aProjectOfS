@@ -4,11 +4,16 @@ import Vuex from "vuex"
 Vue.use(Vuex)
 
 const state = {
-    numer: 'sanlyshi vuex store'
+    numer: 0
 }
 
 const store = new Vuex.Store({
-    state
+    state,
+    mutations:{
+        increaseNum(state,value){
+            state.numer += value
+        }
+    }
 })
 
 export default store
