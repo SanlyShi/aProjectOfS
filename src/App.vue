@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import slotP from "@/demo/slot/slotP";
-import mixinsP from "@/demo/mixins/mixinsP";
-import componentP from "@/demo/components/componentP"
-import extendsP from "@/demo/extends/extendsP"
+import slotP from "@/project/slot/slotP";
+import mixinsP from "@/project/mixins/mixinsP";
+import componentP from "@/project/components/componentP"
+import extendsP from "@/project/extends/extendsP"
 
 export default {
   name: "App",

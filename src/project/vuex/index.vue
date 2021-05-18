@@ -1,5 +1,6 @@
 <template>
   <div class="store-page">
+    <!-- vue的vuex -->
      <p>{{ numer }}</p>
      <p @click="increaseNumer">值increase1</p>
   </div>

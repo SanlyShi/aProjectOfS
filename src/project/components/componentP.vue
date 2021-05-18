@@ -1,4 +1,6 @@
+
 <template>
+  <!-- vue父子组件 -->
   <div class="component_div">
     <component-S :Pdata="data" @clickEmitToP="clickEmitOfP"></component-S>
   </div>

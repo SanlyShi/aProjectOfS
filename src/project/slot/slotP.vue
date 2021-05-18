@@ -1,5 +1,6 @@
 <template>
   <div class="slotP_div">
+    <!-- vue的插槽 -->
     <p>我是父组件内容</p>
     <slot-S>
       <!--        1.常用slot-->

@@ -7,17 +7,12 @@ const routes = [
     {
         path: '/home',
         name: 'home',
-        component: () => import('@/demo/homeRoute/index')
+        component: () => import('@/project/home/index')
     },
     {
-        path: '/work',
-        name: 'work',
-        component: () => import('@/demo/workRoute/index')
-    },
-    {
-        path: '/store',
-        name: 'store',
-        component: () => import('@/demo/vuexStorePage/index')
+        path: '/vuexPage',
+        name: 'vuexPage',
+        component: () => import('@/project/vuex/index')
     }
 ]
 const router = new VueRouter({

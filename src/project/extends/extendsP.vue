@@ -1,4 +1,6 @@
+
 <template>
+<!--  vue 的extend -->
   <div class="entendsP">
 
   </div>

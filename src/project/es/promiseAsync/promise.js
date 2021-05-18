@@ -1,3 +1,4 @@
+// es6的promise和异步Async
 // let func = new Promise((resolve, reject) => {
 //     setTimeout(() => {
 //         console.log("inPromise")

@@ -1,3 +1,4 @@
+// es语法
 // var arr1 = [1,2,4]
 // var arr2 = [7,8,0]
 // var arr3 = [...arr1,...arr2]

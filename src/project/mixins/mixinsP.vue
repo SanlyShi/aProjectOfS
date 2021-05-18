@@ -1,4 +1,5 @@
 <template>
+<!-- vue的mixins -->
   <div class="mixins_P">
     <p>{{ name }} {{ firstName }} {{ mixinData }}</p>
   </div>

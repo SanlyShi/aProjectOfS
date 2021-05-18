@@ -1,3 +1,4 @@
+// es6的模块化
 // import {x, y, sum} from "./s"
 // let m = {
 //     x, y, sum
